@@ -1,45 +1,44 @@
-Using system;
+using System;
+using System.Dynamic;
 
-Namespace CSharpDiscovery.Examen {
+namespace CSharpDiscovery.Examen {
 
 // Les variables
     public abstract class Character{
-        string Name;
-        float Health;
-        float MaxHealth;
-        DateTime CreationDate;
+        public string Name {get; set;} 
+        public float Health {get; set;}
+        public float MaxHealth {get; set;}
+        public DateTime CreationDate {get; set;}
 // Les Constructeurs
         public Character(){
             Name = "NPC";
-            Health = 100.0
-            MaxHealth = 100.0
+            Health = 100;
+            MaxHealth = 100;
         }
 
-        public Character(string Name, float Health){
+        public Character(string Name, float MaxHealth){
             this.Name = Name;
             this.MaxHealth = MaxHealth;
             this.Health = MaxHealth;
         }
 
 // Les methodes :
-        public static void TakeDamage(int dmg){
+        public void TakeDamage(int dmg){
             if (Health !=  0){
                 Health -= 1;
             }
         }
 
         public static string GetCreationDate(){
-            return CreationDate.ToString();
+            return DateTime.Now.ToString();
             
         }
 
-        public static string ToString(){
-            return String.Format(Name + " :" + Health + "/" + MaxHealth)
+        override public string ToString(){
+            return $"{Name} : {Health}/{MaxHealth}";
         }
         
-        public abstract void Special(){
-        }
-        public abstract void CibledSpecial(Character c){
-        }
+        public abstract void Special();
+        public abstract void CibledSpecial(Character c);
     }
 }

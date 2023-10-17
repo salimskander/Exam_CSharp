@@ -1,64 +1,66 @@
-Using system;
+using System;
 
-Namespace CSharpDiscovery.Examen{
+namespace CSharpDiscovery.Examen{
 
-    public class Warrior : ITank{
+    public class Warrior : Character, ITank {
 
-        private int AttackPower = 25;
+        private bool Bravery;
+        public int AttackPower {
+            get{
+                return AttackPower;
 
-         public Character(){
-            Name = "NPC";
-            Health = 100.0
-            MaxHealth = 100.0
-            Bravery = false
+            }
+            set{
+                AttackPower = 25;
+            }
         }
 
-        public Character(string Name, float Health){
+         public void Character(){
+        }
+
+        public void Character(string Name, float MaxHealth){
             this.Name = Name;
             this.MaxHealth = MaxHealth;
             this.Health = MaxHealth;
         }
 
-        public void override Special(){
+        override public void Special(){
             if (this.Health < 30.0) {
-                Bravery = true
+                Bravery = true;
             }
         }
         
-        public void override CibledSpecial(Character Cible){
+        override public void CibledSpecial(Character Cible){
             if (Cible.Health < AttackPower ){
-                Cible.Health = 0.0;
+                Cible.Health = 0 ;}
                 else {
-                    Cible.Health -= AttackPower
-                }
-            }
+                    Cible.Health -= AttackPower;
+                };
+            
             if (Bravery == true){
                 if (Cible.Health < 15){
-                    Cible.Health = 0.0
-                    else {
-                        Cible.Health -= 15
+                    Cible.Health = 0;
                     }
-                }
+                    else {
+                        Cible.Health -= 15;
+                    }
+                
             }
         }
 
-        public void override DoubleHit(Character cible){
+        public void  DoubleHit(Character cible){
             this.Health -= 10;
-            if (c.Health < AttackPower*2){
-                c.Health = 0.0
+            if (cible.Health < AttackPower*2){
+                cible.Health = 0;}
                 else {
-                    c.Health -= AttackPower * 2
+                    cible.Health -= AttackPower * 2;
                 }
             }
 
 
         }
-        public override ToString(){
-            return $"{Name} : {Health}/{MaxHealth} | Classe : Guerrier | Bravoure : {Bravery}"
-        }
+        override public string ToString(){
+                return $"{Name} : {Health}/{MaxHealth} | Classe : Clerc | Mana : {Mana}";
+            }
 
     }
-
-
-
-}

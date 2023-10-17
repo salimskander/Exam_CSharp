@@ -1,22 +1,51 @@
-Using system;
+using System;
 
-Namespace CSharpDiscovery.Examen{
+namespace CSharpDiscovery.Examen{
 
-    public class Paladin : Character : IHealer :ITank{
+    public class Paladin : Character , IHealer , ITank{
         private int Buff = 0;
+        public int HealPower {
+            get{
+                return HealPower;
+            }
+            set{
+                HealPower = 15;
+            }
+        }
+        public int AttackPower {
+            get{
+                return AttackPower;
 
-        public void override Special(){
+            }
+            set{
+                AttackPower = 25;
+            }
+        }
+
+
+        public void DoubleHeal(Character a, Character b ){
+            a.Health += HealPower/2;
+            b.Health += HealPower/2;
+        }
+
+
+
+        override public void  Special(){
             if (this.Health + HealPower + Buff > 100)
             {
                 this.Health = 100;
                 
             } else {
-                this.Health += HealPower + Buff
+                this.Health += HealPower + Buff;
             }
             
         }
 
-        public void override CibledSpecial(Character cible){
+        public int GetHeal(){
+            return this.HealPower;
+        }
+
+        override public void CibledSpecial(Character cible){
             if (cible.Health - AttackPower - Buff < 0){
                 cible.Health = 0;
             } else {
@@ -24,10 +53,9 @@ Namespace CSharpDiscovery.Examen{
             }
             Buff += 3;
         }
+        override public string  ToString(){
 
-        public string override ToString(){
-
-            return $"{Name} : {Health}/{MaxHealth} | Classe : Paladin | Buff : {Buff}"
+            return $"{Name} : {Health}/{MaxHealth} | Classe : Paladin | Buff : {Buff}";
             
         }
         

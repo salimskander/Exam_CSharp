@@ -1,49 +1,58 @@
-Using system;
+using System;
 
-Namespace CSharpDiscovery.Examen{
+namespace CSharpDiscovery.Examen{
 
-    public class Cleric : IHealer{
+    public class Cleric : Character , IHealer {
 
-        private int HealPower = 15;
+        public int HealPower {
+            get{
+                return HealPower;
+            }
+            set{
+                HealPower = 15;
+            }
+        }
+        private float Mana = 100;
 
-         public Character(){
-            Name = "NPC";
-            Health = 100.0
-            MaxHealth = 100.0
-            Mana = 100.0
+         public void Character(){
         }
 
-        public Character(string Name, float Health){
+        public void Character(string Name, float MaxHealth){
             this.Name = Name;
             this.MaxHealth = MaxHealth;
             this.Health = MaxHealth;
         }
-        public void override Special(){
+        override public void  Special(){
             if (this.Mana > 85) {
-                Mana = 100
+                Mana = 100;}
                 else {
-                    Mana += 15
+                    Mana += 15;
                 }
-            }
         }
         
-        public void override CibledSpecial(Character Cible){
+        override public void CibledSpecial(Character Cible){
             if (Cible.Health < 75){
-                Cible.Health += HealPower
+                Cible.Health += HealPower;
+            }
                 else {
-                    Cible.Health += 0
+                    Cible.Health += 0;
                 }
             }                   
+
+        public void DoubleHeal(Character a, Character b ){
+            a.Health += HealPower/2;
+            b.Health += HealPower/2;
         }
 
-        public void override DoubleHeal(Character a, Character b ){
-            a.Health += HealPower/2
-            b.Health += HealPower/2
+        
+            public int GetHeal(){
+            return HealPower;
         }
 
-        public override ToString(){
-                return $"{Name} : {Health}/{MaxHealth} | Classe : Clerc | Mana : {Mana}"
+        override public string ToString(){
+                return $"{Name} : {Health}/{MaxHealth} | Classe : Clerc | Mana : {Mana}";
             }
+
     }
 
 

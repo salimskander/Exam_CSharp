@@ -1,24 +1,23 @@
-Using system;
+using System;
 
-Namespace CSharpDiscovery.Examen{
+namespace CSharpDiscovery.Examen{
 
     interface IHealer{
-        int HealPower;
+        public int HealPower {get; set;}
 
-        public void DoubleHeal(Character a, Character b ){
-        }
+        public abstract void DoubleHeal(Character a, Character b );
         public int GetHeal(){
-            return HealPower
+            return HealPower;
         }
     }
 
     interface ITank{
-        int AttackPower;
+        public int AttackPower{get; set;}
 
         public void DoubleHit(Character c){
         }
         public int GetAttack(){
-            return AttackPower
+            return AttackPower;
         }
     }
 
